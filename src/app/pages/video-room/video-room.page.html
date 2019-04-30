@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Live Video Call
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="!session">
+
+  <h1 align="center" id="title">Tiene una cita con su medico a las xx:yy ¿Desea unirse a la video consulta?</h1>
+
+
+  <ion-button id="join-button" [disabled]="!mySessionId && !myUserName" (click)="joinSession()" expand="block"
+    shape="round" color="primary">
+    <ion-icon slot="start" name="videocam"></ion-icon>
+    Join
+  </ion-button>
+
+</ion-content>
+
+<ion-content [scrollEvents]="true" (ionScroll)="refreshVideos()" *ngIf="session">
+  <div id="session-header">
+    <p id="session-title">{{mySessionId}}</p>
+    <p id="session-title">{{myUserName}}</p>
+  </div>
+
+  <ion-grid>
+    <!--Subscribers and Publishers-->
+    <ion-row>
+      <ion-col size="6">
+        <div *ngIf="publisher" class="stream-container">
+          <user-video [streamManager]="publisher"></user-video>
+        </div>
+      </ion-col>
+
+      <ion-col size="6" *ngFor="let sub of subscribers">
+        <div class="stream-container">
+          <user-video [streamManager]="sub"></user-video>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button size="small" color="danger" (click)="leaveSession()">
+      <ion-icon name="power"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

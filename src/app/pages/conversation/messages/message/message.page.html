@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Compose
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="" class="hydrated" style="--offset-top:76px; --offset-bottom:0px;">
+  <form [formGroup]='messageForm' (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+          <div padding>
+            <ion-item>
+              <ion-label slot="start" color="primary">To:</ion-label>
+              <ion-input type="text" formControlName="to"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-textarea rows="6" cols="20" formControlName="text" placeholder="Escribe un mensaje"></ion-textarea>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div padding>
+      <ion-button size="large" type="submit" expand="block">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+
+    </div>
+
+  </form>
+</ion-content>

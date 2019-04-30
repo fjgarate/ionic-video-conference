@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Messages
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="" class="hydrated" style="--offset-top:76px; --offset-bottom:0px;">
+  <ion-list class="list list-md hydrated">
+    <ion-item *ngFor="let message of messages" class="in-list item ion-focusable item-label hydrated">
+      <ion-avatar slot="start" class="hydrated">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label (click)="openMessage($event)" id='{{message.createdDate}}'
+        class="sc-ion-label-ios-h sc-ion-label-ios-s hydrated">
+        <h2>{{message.author}}</h2>
+        <h3>{{message.createdDate | date:'short'}}</h3>
+        <p class="b">{{message.text}}.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="primary" (click)="createMessage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

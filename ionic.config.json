@@ -1,6 +1,8 @@
 {
   "name": "ionic-video-conference",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "de2fc484"
 }

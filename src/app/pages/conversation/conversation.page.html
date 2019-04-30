@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Conversations
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="" class="hydrated" style="--offset-top:76px; --offset-bottom:0px;">
+  <ion-list class="list list-md hydrated">
+
+    <ion-item *ngFor="let conversation of conversations" class="in-list item ion-focusable item-label hydrated">
+
+      <ion-icon slot="start" ios="ios-person" md="md-person" style="color: rgb(93, 102, 206); " role="img"
+        class="hydrated avatar" aria-label="conversation"></ion-icon>
+
+      <ion-label (click)="goMessages(conversation.id)" class="sc-ion-label-ios-h sc-ion-label-ios-s hydrated">
+        <h2>{{conversation.other_participant}}</h2>
+        <h3>{{conversation.last_message_date | date:'short'}}</h3>
+        <p>{{conversation.messages[0].text}}.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
