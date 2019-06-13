@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
+import { Conversation } from '../models/conversation';
+import { Message } from '../models/message';
+
 import { AuthenticationService } from './authentication.service';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -28,7 +31,7 @@ export class ConversationService {
       })
     };
     return this.http.get<any>(
-      environment.apiUrl + '/conversations',
+      environment.api_url + '/conversations',
       options
     );
   }
@@ -40,12 +43,12 @@ export class ConversationService {
       })
     };
     return this.http.get<any>(
-      environment.apiUrl + '/conversations/user' + '/' + id,
+      environment.api_url + '/conversations/user' + '/' + id,
       options
     );
   }
-  addMessage(conversationId: string, author: string, text: string) {
-    const body = JSON.stringify({ author: author, text: text });
+  addMessage(conversationId: string, author: string, text: string, read: boolean) {
+    const body = JSON.stringify({ author: author, text: text, read: read });
     const options = {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + this.currentUser.token,
@@ -53,8 +56,27 @@ export class ConversationService {
       })
     };
     return this.http.put<any>(
-      environment.apiUrl + '/conversations/' + conversationId, body, options
+      environment.api_url + '/conversations/' + conversationId, body, options
     );
   }
+
+  updateConversation( id: string, newConversation: Conversation) {
+    console.log('Conversacion actualizada');
+    console.log('Con', newConversation);
+    console.log('id', id);
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.currentUser.token,
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.put<any>(
+      environment.api_url + '/conversations/update/' + id,
+      newConversation,
+      options
+    );
+
+  }
+
 }
 

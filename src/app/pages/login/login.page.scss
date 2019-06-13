@@ -1,5 +1,10 @@
-
-
+body {
+  margin: 0;
+  font-family: Verdana,sans-serif;
+  height: 100%;
+  width: 100%;
+}
+$font-family:Verdana,sans-serif;
 $white-color: #fff;
 $height100: 100%;
 
@@ -14,8 +19,20 @@ ion-row {
 }
 
 ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    -moz-box-shadow:0 0 10px #4e707c;
+    -webkit-box-shadow:0 0 10px #4e707c;
+    box-shadow:0 0 10px #4e707c;
+    text-align: center;
+    margin:5em auto;
+    background:#fff;
+    border:8px solid #eee;
+    padding: 10px;
+    height: 400px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
 }
 
 ion-button {

@@ -28,7 +28,7 @@ export class UserService {
       })
     };
     return this.http.get<any>(
-      environment.apiUrl + '/users/' + id,
+      environment.api_url + '/users/' + id,
       options
     );
   }

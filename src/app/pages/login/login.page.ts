@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
       .subscribe(
         data => {
           this.hideLoader();
-          this.router.navigate(['/menu/dashboard']);
+          this.router.navigate(['/home']);
           // const roomName = this.loginForm.value.username.replace(/ /g, "-"); // replace white spaces by -
           // this.router.navigate(['']);
           // this.router.navigate(["/", roomName]);

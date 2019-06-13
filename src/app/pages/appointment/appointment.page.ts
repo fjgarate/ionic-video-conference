@@ -1,7 +1,15 @@
+import { Appointment } from './../../shared/models/appointment';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
+import { AppointmentService } from './../../shared/services/appointmen.service';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { User } from '../../shared/models/user';
+import { UserService } from '../../shared/services/user.service';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-appointment',
@@ -9,6 +17,9 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./appointment.page.scss'],
 })
 export class AppointmentPage implements OnInit {
+  eventPrueba: Appointment;
+  currentUser: User;
+  currentUserSubscription: Subscription;
   event = {
     title: '',
     desc: '',
@@ -29,10 +40,18 @@ export class AppointmentPage implements OnInit {
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) { }
+  constructor(private appointmentService: AppointmentService, private authenticationService: AuthenticationService, private userSrv: UserService, private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,
+  ) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
+      user => {
+        this.currentUser = user;
+      }
+    );
+   }
 
   ngOnInit() {
     this.resetEvent();
+    this.loadAllEvents();
   }
   resetEvent() {
     this.event = {
@@ -42,6 +61,30 @@ export class AppointmentPage implements OnInit {
       endTime: new Date().toISOString(),
       allDay: false
     };
+  }
+  private loadAllEvents() {
+    this.appointmentService
+      .getAllCalendar(this.currentUser.token, this.currentUser.id)
+      .pipe(first())
+      .subscribe(eventPrueba => {
+        console.log(eventPrueba);
+        this.eventPrueba = eventPrueba;
+        console.log(this.eventPrueba)
+        for (let ev of eventPrueba){
+          console.log(ev.date)
+          let d = new Date(ev.date);
+          console.log(d.getTime())
+          this.eventSource.push({
+            title: ev.title,
+            desc: '',
+            startTime: d,
+             endTime:'',
+            allDay: true
+          });
+        }
+        console.log('F',this.eventSource)
+
+      });
   }
 
   // Create the right event format and reload source

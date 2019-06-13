@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://login-videocall.herokuapp.com',
+  openvidu_url: '',
+  openvidu_secret: '',
+  api_url: 'https://login-videocall.herokuapp.com'
 };

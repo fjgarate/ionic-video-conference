@@ -2,4 +2,20 @@
 <ion-app>
 
   <ion-router-outlet></ion-router-outlet>
+  <ion-tabs *ngIf="currentUser">
+  
+    <ion-tab-bar slot="bottom">
+  
+      <ion-tab-button tab="home" routerLinkActive="router-link-active">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tappable routerLink="/login" routerDirection="root">
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  
+  </ion-tabs>
 </ion-app>
