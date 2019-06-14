@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 
+
 @NgModule({
   declarations: [
     AppComponent

@@ -16,15 +16,6 @@ const routes: Routes = [
           path: 'home',
           loadChildren: '../home/home.module#HomePageModule'
         },
-        
-        {
-          path: 'conversation',
-          loadChildren: '../conversation/conversation.module#ConversationPageModule'
-        },
-        {
-          path: 'video-room',
-          loadChildren: '../video-room/video-room.module#VideoRoomPageModule'
-        }
       ]
     },
     {
@@ -39,7 +30,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild([
+      {
+        path: '',
+        component: DashboardPage
+      }
+    ])
   ],
   declarations: [DashboardPage]
 })

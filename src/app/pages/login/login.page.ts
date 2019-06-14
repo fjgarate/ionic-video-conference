@@ -29,7 +29,6 @@ export class LoginPage implements OnInit {
     }
   }
   ngOnInit() {
-    this.authenticationService.logout();
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

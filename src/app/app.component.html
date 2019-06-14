@@ -6,12 +6,12 @@
   
     <ion-tab-bar slot="bottom">
   
-      <ion-tab-button tab="home" routerLinkActive="router-link-active">
+      <ion-tab-button [routerLink]="['/home']">
         <ion-icon ios="ios-home" md="md-home"></ion-icon>
         <ion-label>Home</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tappable routerLink="/login" routerDirection="root">
+      <ion-tab-button  (click)="logout()">
         <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
         <ion-label>Logout</ion-label>
       </ion-tab-button>

@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from '../app/shared/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,10 @@ import { AuthenticationService } from '../app/shared/services/authentication.ser
 export class AppComponent {
 
   currentUser: User;
-  currentUserSubscription: Subscription;  constructor(
+  currentUserSubscription: Subscription;  
+  constructor(
+    private router: Router,
     private authenticationService: AuthenticationService,
-    
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
@@ -24,9 +26,10 @@ export class AppComponent {
     this.authenticationService.currentUser.subscribe(
       x => (
         this.currentUser = x) 
+
         );
     console.log('HOla')
-    
+
    // this.initializeApp();
   }
 
@@ -35,5 +38,11 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/']);
+
   }
 }

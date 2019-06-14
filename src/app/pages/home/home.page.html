@@ -1,31 +1,41 @@
 <ion-header>
-  <ion-toolbar color="light" style="text-align: center">
+  <ion-toolbar color="primary" style="text-align: center">
     <ion-title>
       INICIO
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content fullscreen="">
+<ion-content>
+<ion-card >
+  <ion-card-content>
   <ion-item  [routerLink]="['/appointment2']">
     <ion-icon ios="ios-calendar" md="md-calendar" slot="start"></ion-icon>
     <ion-label>Calendario</ion-label>
   </ion-item> 
+  </ion-card-content>
+  </ion-card>
+<ion-card>
+
+    <ion-card-content>
+
   <ion-item [routerLink]="['/conversation']">
     <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" slot="start"></ion-icon>
     <ion-label>Conversaciones</ion-label>
   </ion-item>
+  </ion-card-content>
+  </ion-card>
+
+<ion-card>
+
+    <ion-card-content>
 
   <ion-item [routerLink]="['/video-room']">
     <ion-icon ios="ios-videocam" md="md-videocam" slot="start"></ion-icon>
     <ion-label>Videoconsulta</ion-label>
   </ion-item>
-  adios
-  <ion-button tab="appointment" >
-    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
-    <ion-label>Calendar</ion-label>
-  </ion-button>
+  </ion-card-content>
 
+
+</ion-card>
 </ion-content>
-
 
