@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   openvidu_url: '',
   openvidu_secret: '',
-  api_url: 'http://localhost:4000'
-
+  api_url: 'https://login-videocall.herokuapp.com'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
